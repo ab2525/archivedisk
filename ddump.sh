@@ -44,23 +44,24 @@ cd $output
 
 if [ $smallStep == true ]; then
 	for j in `seq 1 $((cycles-1))`;do
-		for i in `seq 0 $((drives-1))`; do echo "eject /d$i"; done
-		echo "Insert disks in all drives, and press enter when finished. (do not close trays!)"
+		for i in `seq 0 $((drives-1))`; do eject /d$i; done
+		echo "Insert disks in all drives, and press enter when finished. (remember to close trays!)"
 		read
 		for i in `seq 0 $((drives-1))`; do dd if=/d$i of="`blkid -o value /d$i | head -n 1`.iso" & done
+		sleep 2;
 		while [[ `ps aux|grep " dd "|grep -v grep|wc -l` -ne 0 ]];do sleep 10;done
 		
 	done
 
-	for i in `seq 0 $((remainder-1))`; do echo "eject /d$i";done
-	echo "Insert disks in open drives, and press enter when finished. (do not close trays!)"
+	for i in `seq 0 $((remainder-1))`; do eject /d$i;done
+	echo "Insert disks in open drives, and press enter when finished. (remember to close trays!)"
 	read
 	for i in `seq 0 $((remainder-1))`; do dd if=/d$i of="`blkid -o value /d$i | head -n 1`.iso" & done
 	while [[ `ps aux|grep " dd "|grep -v grep|wc -l` -ne 0 ]];do sleep 10;done
 else
 	for j in `seq 1 $cycles`;do
-		for i in `seq 0 $((drives-1))`; do echo "eject /d$i"; done
-		echo "Insert disks in all drives, and press enter when finished. (do not close trays!)"
+		for i in `seq 0 $((drives-1))`; do eject /d$i; done
+		echo "Insert disks in all drives, and press enter when finished. (remember to close trays!)"
 		read
 		for i in `seq 0 $((drives-1))`; do dd if=/d$i of="`blkid -o value /d$i | head -n 1`.iso" & done
 		while [[ `ps aux|grep " dd "|grep -v grep|wc -l` -ne 0 ]];do sleep 10;done
