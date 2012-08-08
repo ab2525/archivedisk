@@ -67,3 +67,5 @@ else
 		while [[ `ps aux|grep " dd "|grep -v grep|wc -l` -ne 0 ]];do sleep 10;done
 	done
 fi
+echo "All done!"
+for i in `seq 0 $((drives-1))`; do eject /d$i; done
