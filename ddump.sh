@@ -45,7 +45,7 @@ cd $output
 if [ $smallStep == true ]; then
 	for j in `seq 1 $((cycles-1))`;do
 		for i in `seq 0 $((drives-1))`; do eject /d$i; done
-		echo "Insert disks in all drives, and press enter when finished. (remember to close trays!)"
+		echo "Insert disks in all drives, close trays, wait for blue lights to stop blinking, and press enter when finished. (remember to close trays!)"
 		read
 		for i in `seq 0 $((drives-1))`; do bash -c "dd if=/d$i of='`blkid -o value /d$i | head -n 1`.iso';eject /d$i" & done
 		echo "Running! There should be $drives lights on, now. (We hope)"
@@ -55,7 +55,7 @@ if [ $smallStep == true ]; then
 	done
 
 	for i in `seq 0 $((remainder-1))`; do eject /d$i;done
-	echo "Insert disks in open drives, and press enter when finished. (remember to close trays!)"
+		echo "Insert disks in open drives, close trays, wait for blue lights to stop blinking, and press enter when finished. (remember to close trays!)"
 	read
 	for i in `seq 0 $((remainder-1))`; do bash -c "dd if=/d$i of='`blkid -o value /d$i | head -n 1`.iso';eject /d$i" & done
 	echo "Running! There should be $remainder lights on, now. (We hope)"
@@ -65,7 +65,7 @@ if [ $smallStep == true ]; then
 else
 	for j in `seq 1 $cycles`;do
 		for i in `seq 0 $((drives-1))`; do eject /d$i; done
-		echo "Insert disks in all drives, and press enter when finished. (remember to close trays!)"
+		echo "Insert disks in all drives, close trays, wait for blue lights to stop blinking, and press enter when finished. (remember to close trays!)"
 		read
 		for i in `seq 0 $((drives-1))`; do bash -c "dd if=/d$i of='`blkid -o value /d$i | head -n 1`.iso';eject /d$i" & done
 		echo "Running! There should be $drives lights on, now. (We hope)"
