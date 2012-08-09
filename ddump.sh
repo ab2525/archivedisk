@@ -39,8 +39,7 @@ if [ $smallStep == true ]; then
 else
 	echo "$((cycles)) cycles of $drives drives";
 fi
-
-mkdir $output
+if [ -d $output ]; then echo "Not creating already existing dir";else mkdir $output;fi
 cd $output
 
 if [ $smallStep == true ]; then
