@@ -3,7 +3,7 @@
 echo "Welcome to ddump."
 
 if [ -x $1 ]; then echo "Parameter missing. Run like ./ddump.sh <numberofdisks> <outputdir>";exit 1;fi
-if [ -d $2]; then echo "WARNING!!!!!! Outputdir exists.";echo "Press enter if this is okay, control-c if not";read;fi
+if [ -d $2 ]; then echo "WARNING!!!!!! Outputdir exists.";echo "Press enter if this is okay, control-c if not";read;fi
 #if [ -x $2 ]; then echo "Parameter missing. Run like ./ddump.sh <numberofdisks> <outputdir>";exit 1a;fi
 
 disks=$1
