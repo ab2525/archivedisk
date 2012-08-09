@@ -48,6 +48,7 @@ if [ $smallStep == true ]; then
 		echo "Insert disks in all drives, and press enter when finished. (remember to close trays!)"
 		read
 		for i in `seq 0 $((drives-1))`; do dd if=/d$i of="`blkid -o value /d$i | head -n 1`.iso" & done
+		echo "Running! There should be $drives lights on, now. (We hope)"
 		sleep 2;
 		while [[ `ps aux|grep " dd "|grep -v grep|wc -l` -ne 0 ]];do sleep 10;done
 		
@@ -57,6 +58,8 @@ if [ $smallStep == true ]; then
 	echo "Insert disks in open drives, and press enter when finished. (remember to close trays!)"
 	read
 	for i in `seq 0 $((remainder-1))`; do dd if=/d$i of="`blkid -o value /d$i | head -n 1`.iso" & done
+	echo "Running! There should be $remainder lights on, now. (We hope)"
+
         sleep 2s;
 	while [[ `ps aux|grep " dd "|grep -v grep|wc -l` -ne 0 ]];do sleep 10;done
 else
@@ -65,6 +68,8 @@ else
 		echo "Insert disks in all drives, and press enter when finished. (remember to close trays!)"
 		read
 		for i in `seq 0 $((drives-1))`; do dd if=/d$i of="`blkid -o value /d$i | head -n 1`.iso" & done
+		echo "Running! There should be $drives lights on, now. (We hope)"
+		sleep 2s;
 		while [[ `ps aux|grep " dd "|grep -v grep|wc -l` -ne 0 ]];do sleep 10;done
 	done
 fi
