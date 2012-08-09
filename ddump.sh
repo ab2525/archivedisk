@@ -57,6 +57,7 @@ if [ $smallStep == true ]; then
 	echo "Insert disks in open drives, and press enter when finished. (remember to close trays!)"
 	read
 	for i in `seq 0 $((remainder-1))`; do dd if=/d$i of="`blkid -o value /d$i | head -n 1`.iso" & done
+        sleep 2s;
 	while [[ `ps aux|grep " dd "|grep -v grep|wc -l` -ne 0 ]];do sleep 10;done
 else
 	for j in `seq 1 $cycles`;do
